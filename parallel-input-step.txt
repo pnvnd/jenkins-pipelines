@@ -1,0 +1,25 @@
+pipeline {
+    agent { label 'linux' }
+    stages {
+        stage('Parallel Stage') {
+            failFast true
+            parallel {
+                stage('Branch A') {
+                    steps {
+                    input 'Branch A'
+                    }
+                }
+                stage('Branch B') {
+                    steps {
+                    input 'Branch B'
+                    }
+                }
+                stage('Branch C') {
+                    steps {
+                    input 'Branch C'
+                    }
+                }
+            }
+        }
+    }
+}

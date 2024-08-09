@@ -1,0 +1,45 @@
+pipeline {
+    agent { label 'linux' }
+    stages {
+        stage('run-parallel-branches') {
+            steps {
+            parallel(
+                a: {
+                    script {
+                        for(int i = 0 ; i < 20 ; ++i) {
+                        echo "This is branch a => $i/20"
+                        echo "echo 'wow https://www.example.com'"
+                        sh '''
+                        #!/bin/bash
+                        sleep "$(( RANDOM % 10 ))"
+                        '''
+                        }
+                    }
+                },
+                b: {
+                    script {
+                        for(int i = 0 ; i < 10 ; ++i) {
+                        echo "This is branch b => $i/10"
+                        sh '''
+                        #!/bin/bash
+                        sleep "$(( RANDOM % 10 ))"
+                        '''
+                        }
+                    }
+                },
+                c: {
+                    script {
+                    for(int i = 0 ; i < 10 ; ++i) {
+                        echo "This is branch c => $i/10"
+                        sh '''
+                        #!/bin/bash
+                        sleep "$(( RANDOM % 10 ))"
+                        '''
+                        }
+                    }
+                },
+            )
+            }
+        }
+    }
+}

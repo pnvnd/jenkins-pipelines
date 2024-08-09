@@ -1,0 +1,11 @@
+pipeline {
+    agent { label 'linux' } 
+    stages {
+        stage('Origin') {
+            steps {
+                sh 'echo Sending simpleEvent';
+                publishEvent simpleEvent("simpleEvent")
+            }
+        }
+    }
+}

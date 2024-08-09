@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('cron') {
+            steps {
+                echo 'Hello World from a cron job'
+            }
+        }
+    }
+}

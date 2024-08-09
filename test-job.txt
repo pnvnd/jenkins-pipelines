@@ -1,0 +1,15 @@
+pipeline {
+    agent {        
+        label 'linux'
+    }
+    stages {
+        stage('test-agents') {
+            steps {
+                echo 'Testing agents'
+                sh 'cat /etc/os-release'
+                sh 'sleep 5'
+                sh 'java -version'
+            }
+        }
+    }
+}
